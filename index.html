@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paulina Sroka, Product Designer</title>
+<meta name="description" content="Product designer building the structure underneath products: design systems, configurators and e-commerce.">
+<meta property="og:title" content="Paulina Sroka, Product Designer">
+<meta property="og:description" content="Product designer building the structure underneath products: design systems, configurators and e-commerce.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0A09'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23EDE9E3' text-anchor='middle'%3EPS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@300;400;500&amp;family=Geist+Mono:wght@400&amp;display=swap">
+<style>
+body{margin:0;background:#0B0A09}
+a{color:#EDE9E3}a:hover{color:#FFFFFF}
+.pg{overflow-x:clip;font-family:'Geist',system-ui,sans-serif;color:#EDE9E3;background:#0B0A09;-webkit-font-smoothing:antialiased}
+.pg *{box-sizing:border-box}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-0.01em}
+.mono{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#8E8981}
+.wrap{width:100%;max-width:1360px;margin:0 auto;padding:0 40px}
+.split{position:relative}
+.split>:first-child{position:absolute;left:0;top:0}
+.split>:first-child:empty{display:none}
+.split>:last-child{width:100%;max-width:840px;margin:0 auto}
+@media (max-width:1240px){
+  .split>:first-child{position:static;display:block;margin-bottom:24px}
+}
+
+/* Gentle text motion */
+.line{display:block;overflow:hidden;padding-bottom:0.08em}
+.line>span{display:inline-block;animation:rise 1.3s cubic-bezier(.16,.84,.24,1) both}
+.fade{animation:fade 1.4s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.3s}.d3{animation-delay:.55s}.d4{animation-delay:.9s}
+@keyframes rise{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){
+  .inview{animation:fade linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+}
+
+.nav a,.ul{text-decoration:none;font:inherit;font-size:14px;color:#CFCAC2;position:relative;padding:12px 0;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.ul{font-size:15px;color:#EDE9E3}
+.nav a,.ul{transition:color .4s ease}
+.nav a:hover,.ul:hover{color:var(--accent)}
+.ul svg{transition:transform .5s cubic-bezier(.16,.84,.24,1)}
+.ul:hover svg{transform:translateX(2px) translateY(-2px)}
+.ul:hover svg.copy{transform:none;color:var(--accent)}
+.ul svg.copy{transition:color .4s ease}
+
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2.6s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,90,31,.55)}70%{box-shadow:0 0 0 10px rgba(255,90,31,0)}100%{box-shadow:0 0 0 0 rgba(255,90,31,0)}}
+
+.round{width:52px;height:52px;border-radius:50%;border:1px solid rgba(237,233,227,0.28);display:flex;align-items:center;justify-content:center;color:#EDE9E3;text-decoration:none;transition:background .5s ease,border-color .5s ease,color .5s ease}
+.round svg{transition:transform .5s cubic-bezier(.16,.84,.24,1)}
+.round:hover{background:var(--accent);border-color:var(--accent);color:#0B0A09}
+.round:hover svg{transform:translateY(3px)}
+
+.btn{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px;border-radius:999px;border:1px solid rgba(237,233,227,0.28);background:transparent;color:#EDE9E3;font:inherit;font-size:15px;cursor:pointer;text-decoration:none;transition:background .5s ease,border-color .5s ease,color .5s ease}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#0B0A09}
+.btn svg{transition:transform .5s cubic-bezier(.16,.84,.24,1)}
+.btn:hover svg{transform:translateX(3px) translateY(-3px)}
+
+
+/* Glow, recreated from the Framer site: top-right, follows the scroll */
+.beams{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.pg>section,.pg>footer{position:relative;z-index:1}
+.drift{position:absolute;inset:0}
+.orb{position:absolute;border-radius:50%;mix-blend-mode:plus-lighter;pointer-events:none}
+.orb.a{top:-30vmax;right:-22vmax;width:68vmax;height:68vmax;background:radial-gradient(circle at 42% 58%,rgba(218,91,40,0.55) 0%,rgba(170,19,31,0.42) 32%,rgba(170,19,31,0.12) 55%,rgba(170,19,31,0) 70%);filter:blur(40px);opacity:.45;animation:breathe 26s ease-in-out infinite alternate}
+.orb.b{top:-8vmax;right:6vmax;width:26vmax;height:26vmax;background:radial-gradient(circle,rgba(255,150,90,0.35) 0%,rgba(218,91,40,0.12) 45%,rgba(218,91,40,0) 70%);filter:blur(30px);opacity:.35;animation:breathe 19s ease-in-out infinite alternate-reverse}
+@keyframes breathe{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-2vw,2vh) scale(1.06)}}
+@supports (animation-timeline: scroll()){
+  .drift{animation:follow linear both;animation-timeline:scroll(root)}
+}
+@keyframes follow{0%{transform:translate(0,0);opacity:1}35%{transform:translate(-4vw,14vh);opacity:.75}100%{transform:translate(-10vw,34vh);opacity:.45}}
+.specks i{position:absolute;border-radius:50%;background:#F4D3BE;opacity:0;animation:twinkle 5.5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.05}50%{opacity:.55}}
+
+.pdot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;transition:box-shadow .5s ease}
+.ul.proc:hover .pdot{animation:pulse 2.2s ease-out infinite}
+/* Work */
+.case{display:flex;flex-direction:column;gap:28px;padding:56px 0;border-top:1px solid rgba(237,233,227,0.12)}
+.cases{width:100%}
+.case:first-child{border-top:none;padding-top:0}
+.media{display:block;overflow:hidden;border-radius:6px;background:#161412;aspect-ratio:1024/542}
+.media img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,.84,.24,1)}
+a.media:hover img{transform:scale(1.025)}
+.cols{display:flex;flex-direction:column;gap:32px;max-width:760px}
+.body{margin:0;font-size:16px;line-height:1.7;color:#EDE9E3;font-weight:300}
+.impact{margin:0;font-size:16px;line-height:1.7;color:#EDE9E3;font-weight:300}
+.tag{font-size:13px;color:#8E8981}
+
+.clients{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.clients>div{padding-right:24px!important}
+.clients>div{padding:22px 0;border-top:1px solid rgba(237,233,227,0.12);display:flex;flex-direction:column;gap:4px}
+.xp>*{padding-right:24px}
+.xp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;padding:18px 0;border-top:1px solid rgba(237,233,227,0.12);font-size:15px}
+
+@media (max-width:900px){
+  .wrap{padding:0 16px}
+  .cols{gap:20px}
+  .clients{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .xp{grid-template-columns:minmax(0,1fr);gap:4px}
+  .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .dot,.line>span,.fade,.inview,.orb,.drift,.specks i{animation:none}
+  .specks i{opacity:.3}
+}
+</style>
+<style>.ic-ok,.ic-copy{display:inline-flex}[hidden]{display:none!important}html,body{margin:0;background:#0B0A09}</style>
+</head>
+<body>
+<div class="pg" style="--accent: #FF5A1F; width: 100%; min-height: 100vh">
+  <div class="beams fade" aria-hidden="true">
+    <div class="drift">
+      <div class="orb a"></div>
+      <div class="orb b"></div>
+      <div class="specks"><i style="left: 68%; top: 22%; width: 1px; height: 1px; animation-delay: 2.4s"></i><i style="left: 52%; top: 15%; width: 1px; height: 1px; animation-delay: 2.2s"></i><i style="left: 80%; top: 30%; width: 1px; height: 1px; animation-delay: 0.2s"></i><i style="left: 74%; top: 11%; width: 2px; height: 2px; animation-delay: 1.4s"></i><i style="left: 75%; top: 10%; width: 1px; height: 1px; animation-delay: 5.0s"></i><i style="left: 62%; top: 10%; width: 1px; height: 1px; animation-delay: 3.5s"></i><i style="left: 51%; top: 31%; width: 1px; height: 1px; animation-delay: 0.3s"></i><i style="left: 66%; top: 56%; width: 1px; height: 1px; animation-delay: 0.9s"></i><i style="left: 84%; top: 42%; width: 2px; height: 2px; animation-delay: 3.4s"></i><i style="left: 59%; top: 16%; width: 2px; height: 2px; animation-delay: 3.5s"></i><i style="left: 60%; top: 50%; width: 2px; height: 2px; animation-delay: 0.6s"></i><i style="left: 52%; top: 10%; width: 1px; height: 1px; animation-delay: 3.7s"></i><i style="left: 91%; top: 57%; width: 1px; height: 1px; animation-delay: 4.7s"></i><i style="left: 85%; top: 61%; width: 1px; height: 1px; animation-delay: 2.2s"></i><i style="left: 98%; top: 26%; width: 1px; height: 1px; animation-delay: 4.2s"></i><i style="left: 53%; top: 41%; width: 1px; height: 1px; animation-delay: 3.2s"></i><i style="left: 94%; top: 60%; width: 1px; height: 1px; animation-delay: 1.7s"></i><i style="left: 55%; top: 68%; width: 1px; height: 1px; animation-delay: 2.5s"></i><i style="left: 57%; top: 65%; width: 2px; height: 2px; animation-delay: 2.5s"></i><i style="left: 52%; top: 43%; width: 1px; height: 1px; animation-delay: 2.0s"></i><i style="left: 86%; top: 66%; width: 1px; height: 1px; animation-delay: 3.5s"></i><i style="left: 52%; top: 14%; width: 1px; height: 1px; animation-delay: 5.7s"></i></div>
+    </div>
+  </div>
+
+
+  <!-- HERO -->
+  <section style="position: relative; height: 100vh; min-height: 640px; display: flex; flex-direction: column; overflow: hidden" aria-label="Introduction">
+    <header class="wrap fade" style="position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; padding-top: 28px; padding-bottom: 28px">
+      <a href="#top" class="serif" aria-label="Paulina Sroka, home" style="font-size: 26px; text-decoration: none; color: #EDE9E3">PS</a>
+      <nav class="nav" aria-label="Main" style="display: flex; gap: 32px; align-items: center">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="https://drive.google.com/file/d/1X7QwHuxu70UPgbVz6cSF4JS56aZ_WabV/view?usp=sharing">Résumé</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <div class="wrap" style="position: relative; z-index: 1; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 10vh">
+      <div class="split">
+        <span class="hide-sm" aria-hidden="true"></span>
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 22px">
+          <img class="fade d1" src="img/7f591c5be2aab65221ceab4ed6cb8eb9.jpg" alt="Portrait of Paulina Sroka" style="width: 88px; height: 88px; border-radius: 50%; object-fit: cover">
+          <h1 class="serif" style="margin: 0; font-size: clamp(40px, 4.4vw, 60px); line-height: 1">
+            <span class="line"><span class="d2">Paulina Sroka</span></span>
+          </h1>
+          <p class="fade d3" style="margin: 0; max-width: 520px; font-size: 17px; line-height: 1.55; color: #A39E96; font-weight: 300">Product Designer. Eight years designing across ecommerce, logistics and complexity.</p>
+          <span class="fade d4" style="display: inline-flex; align-items: center; gap: 10px; font-size: 13px; color: #CFCAC2"><span class="dot" aria-hidden="true"></span>Open to new projects</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap" style="padding-top: 160px; padding-bottom: 140px">
+    <div class="split">
+      <span class="mono">About</span>
+      <div class="inview" style="display: flex; flex-direction: column; gap: 32px">
+        <p class="serif" style="margin: 0; font-size: clamp(30px, 3vw, 44px); line-height: 1.15">The work differs; the challenge rarely does.<br>I design the structure underneath products,<br><em>so they hold up</em> as they grow.</p>
+        <p style="margin: 0; max-width: 620px; font-size: 17px; line-height: 1.65; color: #A39E96; font-weight: 300">I collaborate closely with developers and teams, question my own assumptions, and stay grounded in what users actually need, not what I think they do.</p>
+        <p class="mono" style="margin: 0">Figma · Claude · Magnific · Framer · Adobe Suite</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section id="work" class="wrap" style="padding-bottom: 160px">
+    <div class="split">
+      <span class="mono">Selected work</span>
+      <div>
+        <p class="serif inview" style="margin: 0; font-size: clamp(28px, 2.8vw, 40px); line-height: 1.18">A short summary of each project, with an outline of the process for three of them. There's more behind every one. I'm happy to talk it through.</p>
+
+      </div>
+    </div>
+    <div class="split" style="margin-top: 72px">
+      <span class="hide-sm" aria-hidden="true"></span>
+      <div class="cases">
+          <!-- 01 Auronia -->
+          <article class="case">
+            <a class="media inview" href="auronia.html" aria-label="Open the Auronia case study"><img src="img/fca4c589748419160ed41da2e8024b67.jpg" alt="Auronia ring imagery and AI content workflow"></a>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px">
+              <span class="tag">Auronia · 2019–now</span>
+              <h3 class="serif" style="margin: 0; font-size: clamp(30px, 3vw, 44px); line-height: 1.05">When product photography stopped scaling</h3>
+              <span class="tag">Ecommerce · Design system · AI content workflows · 7-year engagement</span>
+            </div>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px; max-width: 760px"><span class="mono">Context</span><p class="body">Auronia manufactures customizable wedding and engagement rings, where each product exists in many variations. Over time, the visual system, based mainly on dry 3D renders, became difficult to scale across markets, campaigns, and product configurations, with no lifestyle context or real-world presentation.</p></div>
+            <div class="cols inview">
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Role &amp; contributions</span><p class="body">The challenge was not building a configurator, but making thousands of ring variations feel emotionally present and visually consistent without a photoshoot for each one. Over seven years I evolved the platform from a standard ecommerce store into a scalable content ecosystem: I built and maintained a Figma design system covering the full product and marketing surface, standardized visual language across markets and campaigns, and developed AI-assisted workflows that replaced traditional photography for variant-level content.</p></div>
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Impact</span><p class="impact">Visual content that previously required individual photography for each variation can now be produced systematically at scale. Campaign creation accelerated, design consistency held across markets, and the brand no longer needs to choose between speed and quality when launching new ring configurations.</p></div>
+            </div>
+            <div><a class="ul proc" href="auronia.html"><span class="pdot" aria-hidden="true"></span>See the process</a></div>
+          </article>
+
+          <!-- 02 MyZiegler -->
+          <article class="case">
+            <a class="media inview" href="myziegler.html" aria-label="Open the MyZiegler case study"><img src="img/e6bc627e6fbac8f48ac2b2997763b62f.jpg" alt="MyZiegler logistics dashboard"></a>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px">
+              <span class="tag">MyZiegler · 2025–now</span>
+              <h3 class="serif" style="margin: 0; font-size: clamp(30px, 3vw, 44px); line-height: 1.05">Bringing order to operational complexity</h3>
+              <span class="tag">Logistics · Design system · UX across shipment workflows · Ongoing</span>
+            </div>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px; max-width: 760px"><span class="mono">Context</span><p class="body">MyZiegler is a logistics platform used to manage shipments, tracking, documentation, and daily operational workflows. As the product evolved, new features were continuously added, increasing complexity and making consistency harder to maintain across tools. The main challenge was improving clarity and usability within a dense operational system.</p></div>
+            <div class="cols inview">
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Role &amp; contributions</span><p class="body">Logistics platforms accumulate complexity fast. New features land before old ones are fully consistent, and the cognitive load on daily users grows with every release. My focus has been on building the foundation that prevents this drift. I am building and maintaining a shared design system (components, spacing, typography, interaction patterns) used across MyZiegler and its sibling product myIntertrans. Alongside that, I am reworking the information architecture across core workflows: shipment tracking, documentation, and operational dashboards.</p></div>
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Impact</span><p class="impact">A shared design system now sits underneath both MyZiegler and myIntertrans, meaning visual and interaction consistency is structural, not accidental. Information architecture improvements across key workflows have reduced the decisions users have to make to find what they need, making a genuinely dense operational tool faster to use.</p></div>
+            </div>
+            <div><a class="ul proc" href="myziegler.html"><span class="pdot" aria-hidden="true"></span>See the process</a></div>
+          </article>
+
+          <!-- 03 Garmat -->
+          <article class="case">
+            <a class="media inview" href="garmat.html" aria-label="Open the Garmat USA case study"><img src="img/93dbf4081ca6439c849846d343a0c41f.jpg" alt="Garmat spray booth configurator"></a>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px">
+              <span class="tag">Garmat USA · 2024</span>
+              <h3 class="serif" style="margin: 0; font-size: clamp(30px, 3vw, 44px); line-height: 1.05">Making manufacturing configurable</h3>
+              <span class="tag">Industrial manufacturing · Product configurator · Quoting</span>
+            </div>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px; max-width: 760px"><span class="mono">Context</span><p class="body">Garmat manufactures industrial spray booths with thousands of possible configurations, complex compatibility rules, and pricing dependencies. Generating quotes previously relied on spreadsheets, manual validation, and internal product expertise.</p></div>
+            <div class="cols inview">
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Role &amp; contributions</span><p class="body">My job was to make that complexity navigable without flattening it. I designed a step-by-step configurator that surfaces only valid options at each stage, prevents incompatible selections in real time, and shows pricing logic transparently so customers can self-serve without needing a phone call first.</p></div>
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Impact</span><p class="impact">What was a manual, expert-dependent process became a guided self-service flow. Customers can now configure and understand pricing independently. Internal teams spend less time validating inputs and correcting errors, and quotes that previously required several rounds of back-and-forth can be generated in a single session.</p></div>
+            </div>
+            <div><a class="ul proc" href="garmat.html"><span class="pdot" aria-hidden="true"></span>See the process</a></div>
+          </article>
+
+          <!-- 04 Prestige -->
+          <article class="case">
+            <div class="media inview"><img src="img/56926b6d4d6146b8d577ebdc4aef866b.jpg" alt="Prestige Consumer Healthcare storefront and checkout"></div>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px">
+              <span class="tag">Prestige Consumer Healthcare · 2023</span>
+              <h3 class="serif" style="margin: 0; font-size: clamp(30px, 3vw, 44px); line-height: 1.05">Designing for six brands, and the next six</h3>
+              <span class="tag">Multi-brand ecommerce · Modular design framework</span>
+            </div>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px; max-width: 760px"><span class="mono">Context</span><p class="body">Managing multiple ecommerce brands creates duplication, inconsistent UX patterns, and long-term scalability issues when each brand evolves independently. The challenge was not only supporting six existing brands, but designing a reusable ecommerce foundation that could scale to future brands without redesigning or rebuilding core logic.</p></div>
+            <div class="cols inview">
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Role &amp; contributions</span><p class="body">I designed a modular ecommerce framework with shared UX structure (navigation, PLPs, checkout, promotional modules) that each brand can adapt independently through typography, color, imagery, and layout variants. The underlying logic and components do not change; the brand identity does. New storefronts can now be set up by adapting the existing system rather than starting from scratch.</p></div>
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Impact</span><p class="impact">Six brands launched on a single ecommerce foundation. Duplicated design and build work was eliminated across the portfolio, and the framework is structured so future brands can onboard without rebuilding core logic. What would previously have been six separate projects became one system with six expressions.</p></div>
+            </div>
+          </article>
+
+          <!-- 05 Olivka -->
+          <article class="case">
+            <div class="media inview"><img src="img/f1f74559ff83e9d74e4e3ce6d82c6e4d.jpg" alt="Olivka brand identity and mobile app"></div>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px">
+              <span class="tag">Olivka · 2021</span>
+              <h3 class="serif" style="margin: 0; font-size: clamp(30px, 3vw, 44px); line-height: 1.05">Building loyalty beyond discounts</h3>
+              <span class="tag">Hospitality loyalty · Mobile app · Admin panel · Brand identity</span>
+            </div>
+            <div class="inview" style="display: flex; flex-direction: column; gap: 10px; max-width: 760px"><span class="mono">Context</span><p class="body">Customer retention in hospitality depends on balancing user engagement with operational simplicity across both customer-facing and internal systems. The challenge was to connect customer engagement with restaurant operations in a simple, scalable system that works for both users and staff.</p></div>
+            <div class="cols inview">
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Role &amp; contributions</span><p class="body">Olivka needed to work for two very different users: customers collecting points on their phones, and restaurant staff managing promotions on a tablet during a busy service. I designed both ends of the system: a mobile app with a clean barcode-based reward loop, and an admin panel that lets restaurant teams configure promotions and preview exactly what customers will see before publishing. Brand identity was built in parallel, drawing on the Oliwa district's character.</p></div>
+              <div style="display: flex; flex-direction: column; gap: 10px"><span class="mono">Impact</span><p class="impact">Customers got a reward experience simple enough to use between courses. Restaurant staff got a back-end they could manage without training or IT support. Both sides of a connected system launched together: brand, product, and operations.</p></div>
+            </div>
+          </article>
+        </div>
+
+
+    </div>
+  </section>
+
+  <!-- ALONG THE WAY -->
+  <section class="wrap" style="padding-bottom: 140px">
+    <div class="split">
+      <span class="mono">Along the way</span>
+      <div class="clients inview">
+        <div><span style="font-size: 16px">Lidl Family</span><span class="tag">Grocery retail</span><span style="font-size: 14px; color: #CFCAC2">Loyalty mechanics</span></div>
+        <div><span style="font-size: 16px">Kirby Allison</span><span class="tag">Luxury garment care</span><span style="font-size: 14px; color: #CFCAC2">Ecommerce UI/UX</span></div>
+        <div><span style="font-size: 16px">Kate Weiser Chocolate</span><span class="tag">Artisan chocolate</span><span style="font-size: 14px; color: #CFCAC2">Gift box configurator</span></div>
+        <div><span style="font-size: 16px">SkuNexus</span><span class="tag">B2B SaaS</span><span style="font-size: 14px; color: #CFCAC2">Inventory management</span></div>
+        <div><span style="font-size: 16px">Long 4 Lashes</span><span class="tag">Beauty</span><span style="font-size: 14px; color: #CFCAC2">Ecommerce UI/UX</span></div>
+        <div><span style="font-size: 16px">Bogard Press</span><span class="tag">Publishing</span><span style="font-size: 14px; color: #CFCAC2">Ecommerce UI/UX</span></div>
+        <div><span style="font-size: 16px">Markal</span><span class="tag">Industrial marking tools</span><span style="font-size: 14px; color: #CFCAC2">Ecommerce &amp; brand UX</span></div>
+        <div><span style="font-size: 16px">Big Chief</span><span class="tag">Industrial heating</span><span style="font-size: 14px; color: #CFCAC2">Ecommerce &amp; brand UX</span></div>
+        <div><span style="font-size: 16px">MDMaxx</span><span class="tag">Medical equipment</span><span style="font-size: 14px; color: #CFCAC2">Ecommerce UI/UX</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="wrap" style="padding-bottom: 180px">
+    <div class="split">
+      <span class="mono">Experience</span>
+      <div class="inview">
+        <div class="xp"><span class="tag">2025–now</span><span>Product Designer</span><span style="color: #A39E96">MyZiegler</span></div>
+        <div class="xp"><span class="tag">2023–now</span><span>Product Designer</span><span style="color: #A39E96">Web Solutions NYC</span></div>
+        <div class="xp"><span class="tag">2019–now</span><span>Product Designer</span><span style="color: #A39E96">Auronia</span></div>
+        <div class="xp"><span class="tag">2016–2021</span><span>Interactive Designer</span><span style="color: #A39E96">Creatuity</span></div>
+        <div class="xp"><span class="tag">2019</span><span>UX/UI Designer</span><span style="color: #A39E96">Develocraft</span></div>
+        <div class="xp" style="border-bottom: 1px solid rgba(237,233,227,0.12)"><span class="tag">2017–2018</span><span>Junior UX Designer</span><span style="color: #A39E96">GPD Agency</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact" style="border-top: 1px solid rgba(237,233,227,0.12)">
+    <div class="wrap" style="padding-top: 140px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 120px">
+      <div class="split">
+      <span class="mono">Contact</span>
+      <div class="inview" style="display: flex; flex-direction: column; gap: 36px; align-items: flex-start">
+        <h2 class="serif" style="margin: 0; font-size: clamp(56px, 9vw, 140px); line-height: 0.95">Say <em style="color: var(--accent)">hello</em></h2>
+        <p style="margin: 0; font-size: 17px; color: #A39E96; font-weight: 300">Open to new projects and collaborations.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 32px">
+          <button type="button" class="ul base" data-copy="srokapau@gmail.com" aria-label="Copy email address srokapau@gmail.com">srokapau@gmail.com <span class="ic-ok" hidden><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="var(--accent)" stroke-width="1.4" role="img" aria-label="Copied"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span class="ic-copy"><svg class="copy" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5A1.5 1.5 0 0 0 9 1.5H3A1.5 1.5 0 0 0 1.5 3v6A1.5 1.5 0 0 0 3 10.5h.5"/></svg></span></button>
+          <a class="ul base" href="https://www.linkedin.com/in/paulina-sroka-7b809313b/">LinkedIn</a>
+          <a class="ul base" href="https://drive.google.com/file/d/1X7QwHuxu70UPgbVz6cSF4JS56aZ_WabV/view?usp=sharing">Résumé</a>
+        </div>
+      </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; color: #8E8981">
+        <span>© 2026 Paulina Sroka</span>
+        <span>Product Designer</span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){try{navigator.clipboard.writeText(b.dataset.copy)}catch(e){}var ok=b.querySelector('.ic-ok'),cp=b.querySelector('.ic-copy');if(ok){ok.hidden=false;cp.hidden=true;clearTimeout(b._t);b._t=setTimeout(function(){ok.hidden=true;cp.hidden=false},1800)}})});
+</script>
+</body>
+</html>

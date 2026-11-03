@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auronia, case study · Paulina Sroka</title>
+<meta name="description" content="How a brand system and an AI content workflow scaled Auronia.">
+<meta property="og:title" content="Auronia, case study · Paulina Sroka">
+<meta property="og:description" content="How a brand system and an AI content workflow scaled Auronia.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0A09'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23EDE9E3' text-anchor='middle'%3EPS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@300;400;500&amp;family=Geist+Mono:wght@400&amp;display=swap">
+<style>
+body{margin:0;background:#0B0A09}
+a{color:#EDE9E3}a:hover{color:#FFFFFF}
+.pg{overflow-x:clip;font-family:'Geist',system-ui,sans-serif;color:#EDE9E3;background:#0B0A09;-webkit-font-smoothing:antialiased}
+.pg *{box-sizing:border-box}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-0.01em}
+.mono{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#8E8981}
+.wrap{width:100%;max-width:1360px;margin:0 auto;padding:0 40px}
+.split{position:relative}
+.split>:first-child{position:static;display:block;width:100%;max-width:840px;margin:0 auto 14px}
+.split>:first-child:empty{display:none}
+.split>:last-child{width:100%;max-width:840px;margin:0 auto}
+@media (max-width:1240px){
+  .split>:first-child{position:static;display:block;margin-bottom:24px}
+}
+
+/* Gentle text motion */
+.line{display:block;overflow:hidden;padding-bottom:0.08em}
+.line>span{display:inline-block;animation:rise 1.3s cubic-bezier(.16,.84,.24,1) both}
+.fade{animation:fade 1.4s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.3s}.d3{animation-delay:.55s}.d4{animation-delay:.9s}
+@keyframes rise{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){
+  .inview{animation:fade linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+}
+
+.nav a,.ul{text-decoration:none;font:inherit;font-size:14px;color:#CFCAC2;position:relative;padding:12px 0;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.ul{font-size:15px;color:#EDE9E3}
+.nav a,.ul{transition:color .4s ease}
+.nav a:hover,.ul:hover{color:var(--accent)}
+.ul svg.copy{transition:color .4s ease}
+
+.dot,.pdot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.ul.proc:hover .pdot{animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,90,31,.55)}70%{box-shadow:0 0 0 10px rgba(255,90,31,0)}100%{box-shadow:0 0 0 0 rgba(255,90,31,0)}}
+
+/* Glow, same as the homepage */
+.beams{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.pg>section,.pg>footer,.pg>header{position:relative;z-index:1}
+.drift{position:absolute;inset:0}
+.orb{position:absolute;border-radius:50%;mix-blend-mode:plus-lighter;pointer-events:none}
+.orb.a{top:-30vmax;right:-22vmax;width:68vmax;height:68vmax;background:radial-gradient(circle at 42% 58%,rgba(218,91,40,0.55) 0%,rgba(170,19,31,0.42) 32%,rgba(170,19,31,0.12) 55%,rgba(170,19,31,0) 70%);filter:blur(40px);opacity:.45;animation:breathe 26s ease-in-out infinite alternate}
+.orb.b{top:-8vmax;right:6vmax;width:26vmax;height:26vmax;background:radial-gradient(circle,rgba(255,150,90,0.35) 0%,rgba(218,91,40,0.12) 45%,rgba(218,91,40,0) 70%);filter:blur(30px);opacity:.35;animation:breathe 19s ease-in-out infinite alternate-reverse}
+@keyframes breathe{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-2vw,2vh) scale(1.06)}}
+@supports (animation-timeline: scroll()){
+  .drift{animation:follow linear both;animation-timeline:scroll(root)}
+}
+@keyframes follow{0%{transform:translate(0,0);opacity:1}35%{transform:translate(-4vw,14vh);opacity:.75}100%{transform:translate(-10vw,34vh);opacity:.45}}
+.specks i{position:absolute;border-radius:50%;background:#F4D3BE;opacity:0;animation:twinkle 5.5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.05}50%{opacity:.55}}
+
+/* Case study */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.facts>div{padding:18px 24px 18px 0;border-top:1px solid rgba(237,233,227,0.12);display:flex;flex-direction:column;gap:6px}
+.chapter{padding-top:96px}
+.stack{display:flex;flex-direction:column;gap:20px}
+.h2{margin:0 0 4px;font-size:clamp(32px,3.4vw,44px);line-height:1.08;letter-spacing:-0.01em}
+.body{margin:0;font-size:18px;line-height:1.7;color:#E6E1DA;font-weight:400}
+.quote{margin:12px 0;padding:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(24px,2.4vw,30px);line-height:1.3;color:#FFFFFF}
+.fig{margin:16px 0 12px;display:flex;flex-direction:column;gap:10px}
+.fig img{display:block;width:100%;height:auto;aspect-ratio:1134/600;object-fit:cover;border-radius:6px;background:#161412}
+.tag{font-size:13px;color:#8E8981}
+
+.browser{border:1px solid rgba(237,233,227,0.16);border-radius:8px;overflow:hidden;background:#161412}
+.bbar{height:34px;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid rgba(237,233,227,0.12)}
+.bbar i{width:8px;height:8px;border-radius:50%;background:rgba(237,233,227,0.25)}
+.bbar span{margin-left:12px;font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.06em;color:#8E8981}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:8px 0}
+.grid4>div,.grid3>div{padding:18px 20px 18px 0;border-top:1px solid rgba(237,233,227,0.12);display:flex;flex-direction:column;gap:8px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:8px 0}
+.h4{margin:0;font-family:'Instrument Serif',Georgia,serif;font-size:24px;line-height:1.15;font-weight:400}
+.small{margin:0;font-size:15px;line-height:1.6;color:#A39E96;font-weight:400}
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;margin:16px 0 8px}
+.flow::before{content:'';position:absolute;left:0;right:0;top:4px;height:1px;background:rgba(237,233,227,0.2)}
+.step{position:relative;padding:28px 16px 0 0;display:flex;flex-direction:column;gap:6px}
+.step::before{content:'';position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50%;background:#0B0A09;border:1px solid #EDE9E3}
+.step.out::before{background:var(--accent);border-color:var(--accent)}
+.list{list-style:none;margin:0;padding:0}
+.list li{padding:14px 0;border-top:1px solid rgba(237,233,227,0.12);font-size:18px;line-height:1.5;font-weight:400;color:#E6E1DA}
+.list li span{color:#8E8981;margin-left:8px}
+.list li:last-child{border-bottom:1px solid rgba(237,233,227,0.12)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:8px 0}
+.trio figure{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.trio .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:6px;background:#161412}
+.trio .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reject .ph::after{content:'';position:absolute;inset:0;border:1.5px solid var(--accent);border-radius:6px;pointer-events:none}
+.badge{position:absolute;left:10px;top:10px;font-family:'Geist Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;padding:5px 8px;border-radius:3px;background:rgba(11,10,9,0.72);color:#EDE9E3}
+.reject .badge{background:var(--accent);color:#0B0A09}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:4px;max-width:600px}
+.pair figure{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pair img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;background:#161412}
+.pairs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}
+.pairs figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pairs img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;background:#161412}
+.pairs .mono{margin-top:4px}
+.car{overflow:hidden;border-radius:6px;background:#161412}
+.car-track{display:flex;transition:transform 1s cubic-bezier(.65,0,.35,1)}
+.car-track img{flex:0 0 100%;width:100%;aspect-ratio:1600/848;object-fit:cover;display:block}
+.car-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.car-tab{background:none;border:0;padding:8px 0;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:10px;color:#8E8981;font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;transition:color .4s ease}
+.car-tab i{display:block;height:1px;background:rgba(237,233,227,0.2);transition:background .4s ease}
+.car-tab[aria-pressed="true"]{color:#EDE9E3}
+.car-tab[aria-pressed="true"] i{background:var(--accent);height:2px}
+.car-tab:hover{color:#EDE9E3}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{display:inline-flex;align-items:center;height:40px;padding:0 18px;border:1px solid rgba(237,233,227,0.2);border-radius:999px;font-size:15px;color:#E6E1DA}
+.process{margin:16px 0 0;padding:20px 20px 24px;border:1px solid rgba(237,233,227,0.14);border-radius:10px;background:rgba(255,255,255,0.02)}
+.process-head{display:flex;justify-content:space-between;gap:16px;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid rgba(237,233,227,0.1)}
+.pipe{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.pipe li{position:relative;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pipe li:not(:last-child)::after{content:'→';position:absolute;top:0;margin-top:62.5%;right:-21px;transform:translateY(-50%);font-size:14px;line-height:1;color:var(--accent)}
+.pipe .pv{position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:#161412;margin-bottom:8px}
+.pipe .pv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pipe .zoom img{transform:scale(2.4);transform-origin:50% 52%}
+.pipe .prompt{display:flex;align-items:center;padding:14px;border:1px solid rgba(237,233,227,0.14);background:#12100E}
+.pipe .prompt code{font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;line-height:1.35;color:#CFCAC2;display:flex;flex-direction:column;gap:9px;width:100%}
+.pipe .prompt code span{display:flex;flex-direction:column;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pipe .prompt b{font-weight:400;color:var(--accent);font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase}
+.pipe li.out .pv{box-shadow:0 0 0 1px var(--accent)}
+.pipe .h4{font-size:22px}
+@media (max-width:900px){.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}.pipe li::after{display:none}}
+.duo2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.duo2 .fig{margin:0}
+.pipe .stackp{overflow:visible;background:none}
+.pipe .stackp img{border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+.pipe .stackp img:nth-child(1){transform:translate(-12%,2%) rotate(-8deg) scale(.8)}
+.pipe .stackp img:nth-child(2){transform:translate(12%,1%) rotate(7deg) scale(.8)}
+.pipe .stackp img:nth-child(3){transform:scale(.84);outline:1px solid var(--accent);outline-offset:-1px}
+.pipe li.out .pv.stackp{box-shadow:none}
+.series{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+.ads{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}
+.series-cap{margin-top:-4px}
+.ads img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;background:#161412}
+.promise{margin:8px 0;font-family:'Instrument Serif',Georgia,serif;font-size:clamp(30px,3.2vw,44px);line-height:1.12}
+.promise em{color:var(--accent)}
+@media (max-width:900px){
+  .grid4,.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .flow{grid-template-columns:minmax(0,1fr);gap:4px}
+  .flow::before{display:none}
+  .ads{gap:6px}
+}
+@media (max-width:900px){
+  .wrap{padding:0 16px}
+  .facts{grid-template-columns:minmax(0,1fr)}
+  .chapter{padding-top:88px}
+  .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .dot,.pdot,.line>span,.fade,.inview,.orb,.drift,.specks i{animation:none}
+  .specks i{opacity:.3}
+}
+</style>
+<style>.ic-ok,.ic-copy{display:inline-flex}[hidden]{display:none!important}html,body{margin:0;background:#0B0A09}</style>
+</head>
+<body>
+<div class="pg" style="--accent: #FF5A1F; width: 100%; min-height: 100vh">
+  <div class="beams fade" aria-hidden="true">
+    <div class="drift">
+      <div class="orb a"></div>
+      <div class="orb b"></div>
+      <div class="specks"><i style="left: 68%; top: 22%; width: 1px; height: 1px; animation-delay: 2.4s"></i><i style="left: 80%; top: 30%; width: 1px; height: 1px; animation-delay: 0.2s"></i><i style="left: 74%; top: 11%; width: 2px; height: 2px; animation-delay: 1.4s"></i><i style="left: 62%; top: 10%; width: 1px; height: 1px; animation-delay: 3.5s"></i><i style="left: 84%; top: 42%; width: 2px; height: 2px; animation-delay: 3.4s"></i><i style="left: 59%; top: 16%; width: 2px; height: 2px; animation-delay: 3.5s"></i><i style="left: 91%; top: 57%; width: 1px; height: 1px; animation-delay: 4.7s"></i><i style="left: 98%; top: 26%; width: 1px; height: 1px; animation-delay: 4.2s"></i><i style="left: 53%; top: 41%; width: 1px; height: 1px; animation-delay: 3.2s"></i><i style="left: 86%; top: 66%; width: 1px; height: 1px; animation-delay: 3.5s"></i></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="wrap fade" style="display: flex; justify-content: space-between; align-items: center; padding-top: 28px; padding-bottom: 28px">
+    <a href="index.html" class="serif" aria-label="Paulina Sroka, home" style="font-size: 26px; text-decoration: none; color: #EDE9E3">PS</a>
+    <nav class="nav" aria-label="Main" style="display: flex; gap: 32px; align-items: center">
+      <a href="index.html">Work</a>
+      <a href="index.html">About</a>
+      <a href="https://drive.google.com/file/d/1X7QwHuxu70UPgbVz6cSF4JS56aZ_WabV/view?usp=sharing">Résumé</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- INTRO -->
+  <section class="wrap" style="padding-top: 120px">
+    <div class="split">
+      <span class="mono fade d1">Case study</span>
+      <div class="stack" style="gap: 40px">
+        <div class="stack" style="gap: 18px">
+          <span class="tag fade d1">Auronia · 2019–now</span>
+          <h1 class="serif" style="margin: 0; font-size: clamp(44px, 5.4vw, 72px); line-height: 1">
+            <span class="line"><span class="d2">When product photography</span></span>
+            <span class="line"><span class="d3">stopped scaling</span></span>
+          </h1>
+          <p class="fade d3" style="margin: 8px 0 0; font-size: 20px; line-height: 1.6; color: #E6E1DA; max-width: 760px">Over seven years, my work evolved from redesigning the website and creating a scalable design system to solving a much larger challenge: how to produce consistent, high-quality visual content at scale.</p>
+        </div>
+        <div class="facts fade d4">
+          <div><span class="mono">Industry</span><span style="font-size: 15px">Ecommerce · Fine jewellery</span></div>
+          <div><span class="mono">Engagement</span><span style="font-size: 15px">7 years, ongoing</span></div>
+          <div><span class="mono">Tools</span><span style="font-size: 15px">Figma · Claude · Magnific</span></div>
+        </div>
+        <figure class="fig fade d4"><img src="img/4ff05f9ce3b586943579bd3eba6b8485.jpg" alt="Auronia ring imagery, an AI content workflow and the wedding ring shop"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 CHALLENGE -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">01 · Challenge</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Thousands of ring combinations. <em style="color: #A39E96">No photographs to show them.</em></h2>
+        <p class="body inview">Auronia is a German maker of highly customizable wedding and engagement rings. Metal, width, stones, engraving: every product exists in many variations, and you can't photograph every combination.</p>
+        <p class="body inview">At the time, the brand relied heavily on product renders and stock photography. There was no consistent visual system, no dedicated photography library, and no efficient way to showcase new ring variations across marketing channels. Below is an early snapshot of the brand at that stage.</p>
+        <figure class="fig inview"><img src="img/30eda26d3830659cca0411076dbfba2e.jpg" alt="The Auronia website and imagery in 2019"><figcaption class="mono">Before, 2019</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ROLE -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">02 · Role</span>
+      <div class="stack inview">
+        <h2 class="serif h2">The website first, then the system around it</h2>
+        <p class="body">I was responsible for UX/UI design, design systems, branding, and later introducing AI-assisted content workflows. Each stage grew out of the last: the website needed a system, the system needed a brand, and the brand needed content we could keep producing.</p>
+        <div class="grid4">
+          <div><span class="mono">01</span><h3 class="h4">Website</h3><p class="small">Redesign of the shop and the ring selection journey.</p></div>
+          <div><span class="mono">02</span><h3 class="h4">Design system</h3><p class="small">Figma, replacing a Photoshop-only workflow.</p></div>
+          <div><span class="mono">03</span><h3 class="h4">Brand</h3><p class="small">Voice, typography, color, layouts and photography direction.</p></div>
+          <div><span class="mono">04</span><h3 class="h4">AI content</h3><p class="small">A repeatable workflow from render to campaign.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 FOUNDATION -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">03 · Foundation</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Building a foundation</h2>
+        <p class="body inview">Previously, Photoshop was the only design tool in use.</p>
+        <p class="body inview">I introduced Figma workflows and built a shared design system, establishing a consistent visual language for the website, marketing materials, and future campaigns. This included refreshed brand guidelines covering typography, color, layouts, and photography direction.</p>
+        <figure class="fig inview"><img src="img/23a03b4c2bdbcdeb2acae2a481d66e9d.jpg" alt="Typography scale with Cormorant headings and Gotham body text"><figcaption class="mono">Typography</figcaption></figure>
+        <p class="body inview">Design systems only work when people can actually use them. The goal was a shared scale, clear naming, and a core and semantic structure that stays consistent across the site. We named tokens by what they are rather than where they're used, paired with a shared scale, making the system easier to learn, easier to reuse across the website, and quicker to apply in both Figma and code.</p>
+        <p class="body inview">It also made typography rules explicit: every text- token uses Gotham, and every text-heading- token uses Cormorant, so engineers can move fast without guessing. Headings stay simple and scale-only, while body text supports lightweight emphasis through variants.</p>
+        <figure class="fig inview"><img src="img/5b17ad5ffad295beb1ebb27212bdb174.jpg" alt="Auronia design system in Figma showing button color tokens"><figcaption class="mono">Design system</figcaption></figure>
+        <p class="body inview">We followed the same approach for color, rebuilding it into two layers: core and semantic. Core tokens are a simple palette on a shared scale (for example Petrol-50 to Petrol-900) and they only hold raw values. Semantic tokens are what we actually use in designs and code, describing intent across the website (backgrounds, surfaces, borders, text, and states) while always mapping back to core.</p>
+        <p class="quote inview">The foundation was set. Content production was still the problem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 BRAND -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">04 · Brand</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Shaping the brand</h2>
+        <p class="body inview">Regular team meetings aligned the vision and clarified how to apply guidelines across web and social media. Color was one major lever: we replaced a heavy brown palette with softer, welcoming hues evoking love and togetherness. Minimalist typefaces complemented the elegant jewelry aesthetic.</p>
+        <p class="quote inview">Biggest constraint: no product photography, only renderings and stock imagery to work with.</p>
+        <p class="body inview">For a while, we still relied on stock photography, but chosen with intention. I introduced illustration as a bridge to make things feel more personal. Eventually, things shifted: we pulled off our first real photo sessions, and suddenly the brand had a face.</p>
+        <figure class="fig inview"><img src="img/7f21ef04f2b88c6c15c7f42365f4120b.jpg" alt="New brand photography of wedding and engagement rings"><figcaption class="mono">New brand visuals</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 BERLIN -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">05 · Retail</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">And just as momentum built, Berlin happened</h2>
+        <p class="body inview">A brand new store opened, and with it came a whole new challenge: translating everything we'd built (the colors, the mood, the feeling) into a physical space that had to speak the same language. We carried the same token-driven visual language (color, materials, lighting) into the store itself, so walking in felt like stepping inside the website rather than into a separate brand experience.</p>
+        <figure class="fig inview"><img src="img/2770f27638a1e88403cc8efb630c3295.jpg" alt="Interior of the Auronia store in Berlin"><figcaption class="mono">Berlin store</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 VOICE -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">06 · Voice</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">From rational to emotional</h2>
+        <p class="body inview">Before scaling content, we had to decide what it should say. The brand felt very rational and product-focused: it explained how things worked (quality, diamonds, the configurator) but said little about emotion, people and meaning. The tone was informative, technical and reassuring.</p>
+        <p class="body inview">Wedding and engagement rings are deeply emotional purchases. The promise was mainly quality and customization, but what the brand is really about is this:</p>
+        <p class="promise inview">Helping people turn their love story into something they can <em>wear forever.</em></p>
+        <div class="grid3 inview">
+          <div><span class="mono">Eternity</span><p class="small">Rings are symbols of eternity.</p></div>
+          <div><span class="mono">Personal</span><p class="small">Customization makes them personal.</p></div>
+          <div><span class="mono">Lasting</span><p class="small">Craftsmanship makes them last.</p></div>
+        </div>
+        <p class="body inview" style="margin-top: 16px">That promise became five content pillars, the backbone for the website, social media and campaigns:</p>
+        <ul class="list inview">
+          <li>The Moment<span>proposals and weddings</span></li>
+          <li>The Ring<span>emotional product storytelling</span></li>
+          <li>Craftsmanship<span>how it's made</span></li>
+          <li>Education<span>simple and human</span></li>
+          <li>Real Stories<span>customers and couples</span></li>
+        </ul>
+        <p class="body inview" style="margin-top: 16px">Every message follows the way people actually decide:</p>
+        <div class="grid4 inview">
+          <div><span class="mono">01</span><h3 class="h4">Emotional pull</h3><p class="small">Every ring begins with a story.</p></div>
+          <div><span class="mono">02</span><h3 class="h4">Empowerment</h3><p class="small">Design a ring that reflects your own journey.</p></div>
+          <div><span class="mono">03</span><h3 class="h4">Expertise</h3><p class="small">Master goldsmiths and independently certified diamonds.</p></div>
+          <div><span class="mono">04</span><h3 class="h4">Reassurance</h3><p class="small">So you can focus on the moment that matters most.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 STORYTELLING -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">07 · System</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Creating a modular storytelling system</h2>
+        <p class="body inview">As content volume increased, organization became just as important as creation. I built reusable content structures inside Figma, allowing proposal moments, packaging photography, product renders, educational content, and marketing assets to work together as one connected system. The system transformed content creation from a collection of individual assets into a scalable storytelling framework.</p>
+        <figure class="fig inview">
+          <div class="car">
+            <div class="car-track" >
+              <img src="img/s26.jpg" alt="Photography ideas: backdrops and set-ups mapped to themes">
+              <img src="img/s25.jpg" alt="Guide for social media posts: templates for each post type">
+              <img src="img/s27.jpg" alt="Educational content: diamond certificates and cuts in one layout">
+            </div>
+          </div>
+          <div class="car-nav">
+            <button type="button" class="car-tab" aria-pressed="true"><i></i><span>Photography ideas</span></button>
+              <button type="button" class="car-tab" aria-pressed="false"><i></i><span>Social post guide</span></button>
+              <button type="button" class="car-tab" aria-pressed="false"><i></i><span>Educational content</span></button>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 AI -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">08 · AI</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Introducing AI into the creative process</h2>
+        <p class="body inview">Instead of treating AI as a tool for generating isolated images, I approached it as a scalable content production system. I developed workflows that combined product renders, AI-generated models, and structured prompting to create realistic proposal moments, lifestyle imagery, and marketing assets.</p>
+        <div class="process inview">
+          <div class="process-head"><span class="mono">One workflow</span><span class="mono">Render → every channel</span></div>
+          <ol class="pipe">
+          <li><div class="pv"><img src="img/o2.jpg" alt="Product render of an oval solitaire in white gold"></div><span class="mono">01</span><h3 class="h4">Product render</h3><p class="small">The exact ring: metal, stone, proportions.</p></li>
+          <li><div class="pv prompt" aria-label="Prompt structure"><code><span><b>ring</b>render.png</span><span><b>scene</b>ivory linen</span><span><b>light</b>soft, natural</span><span><b>framing</b>close-up, hands</span><span><b>mood</b>intimate</span></code></div><span class="mono">02</span><h3 class="h4">Structured prompt</h3><p class="small">Scene, light, framing, mood.</p></li>
+          <li><div class="pv"><img src="img/b88e77d269987b87acc940319249f08a.jpg" alt="Generated scene: the oval solitaire held between two fingers"></div><span class="mono">03</span><h3 class="h4">Model &amp; scene</h3><p class="small">Hands, people and moments around the render.</p></li>
+          <li><div class="pv zoom"><img src="img/b88e77d269987b87acc940319249f08a.jpg" alt="Upscaled detail of the oval stone and pavé band"></div><span class="mono">04</span><h3 class="h4">Upscale</h3><p class="small">Magnific, to quality for every channel.</p></li>
+          </ol>
+        </div>
+        <div class="series inview">
+          <p class="body"><span class="mono" style="color: var(--accent); margin-right: 10px">↓ The result</span>The same images feed every channel: product page images, ads, banners and social media. Below is one example from social media: the same templates and workflow produce a whole series about craft, materials, design, diamonds, packaging and customer stories. One structure, many stories.</p>
+        <div class="ads">
+          <img src="img/ad_story.jpg" alt="Post: the story behind our craft">
+          <img src="img/ad_materials.jpg" alt="Post: the materials that matter">
+          <img src="img/ad_design2.jpg" alt="Post: from design to will you marry me">
+          <img src="img/ad_diam.jpg" alt="Post: natural vs lab-grown diamonds">
+          <img src="img/ad_pack2.jpg" alt="Post: where packaging becomes a memory">
+          <img src="img/ad_stories.jpg" alt="Post: their stories, our rings">
+        </div>
+          <span class="mono series-cap">Example: social media series</span>
+        </div>
+        <p class="body inview">Every prompt followed a short visual identity written for AI: soft natural light and warm neutral tones, an intimate mood with the focus on hands and closeness, premium but never flashy. It's what makes hundreds of generated images feel like one brand.</p>
+        <div class="chips inview"><span>Soft, natural light</span><span>Beige · ivory · soft gold</span><span>Intimate mood</span><span>Minimal composition</span><span>Hands &amp; closeness</span><span>Premium, not flashy</span></div>
+        <p class="body inview">Behind every finished image is a set of screens like these: one canvas that joins the render with model references, variants generated from the same prompt structure, and frame-by-frame fixes before upscaling.</p>
+        <figure class="fig inview"><img src="img/s29.jpg" alt="Workflow canvas joining a product render with model references"><figcaption class="mono">Workflow canvas</figcaption></figure>
+        <div class="duo2 inview">
+          <figure class="fig"><img src="img/s31.jpg" alt="A series of model variants generated from one prompt structure"><figcaption class="mono">Variants from one prompt</figcaption></figure>
+          <figure class="fig"><img src="img/s32.jpg" alt="Refining a single frame with prompt and reference settings before upscaling"><figcaption class="mono">Refining a frame</figcaption></figure>
+        </div>
+        <p class="quote inview">A key challenge was maintaining product accuracy. Rings needed to be placed naturally on fingers, preserve correct proportions, and match the original designs while interacting realistically with lighting and reflections.</p>
+        <p class="body inview">Exploring AI-generated creations allowed us to test visual directions, generate campaign concepts, and showcase ring variations far faster than traditional production methods would have.</p>
+        <p class="body inview">This made it easy to present different ring collections consistently, test creative directions quickly, adapt campaigns for different audiences, and maintain visual coherence across channels.</p>
+        <figure class="fig inview"><img src="img/s38.jpg" alt="The same ring renders shown on different hands, metals and stones"><figcaption class="mono">Same shots, different metals and stones</figcaption></figure>
+        <figure class="fig inview"><img src="img/10dad5abd185c575af995a0a97791a33.jpg" alt="Grid of AI-assisted lifestyle images of rings"><figcaption class="mono">AI-assisted imagery</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 ACCURACY -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">09 · Accuracy</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">What fails along the way</h2>
+        <p class="body inview">Many generations don't make it. A ring has to sit on the finger, keep its proportions and match the render exactly, and many images that look fine at first glance break one of these rules. Every frame is checked against the original render before it's used.</p>
+        <ul class="list inview">
+          <li>The ring floats above the finger<span>instead of sitting on it</span></li>
+          <li>The stone changes shape<span>an oval turns round</span></li>
+          <li>Wrong proportions<span>the band is too thick or merges with the finger</span></li>
+          <li>Hands<span>extra or fused fingers</span></li>
+          <li>Metal color<span>drifts between variants</span></li>
+        </ul>
+        <div class="trio reject inview">
+          <figure><div class="ph"><img src="img/s35.jpg" alt="Rejected generation: a couple's hands with rings" style="object-position: 62% center"><span class="badge">Rejected</span></div></figure>
+          <figure><div class="ph"><img src="img/rej2.jpg" alt="Rejected generation: hands with wedding bands and a rose"><span class="badge">Rejected</span></div></figure>
+          <figure><div class="ph"><img src="img/rej3b.jpg" alt="Rejected generation: clasped hands with gold bands"><span class="badge">Rejected</span></div></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 CONSISTENCY -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">10 · Consistency</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Same ring, two contexts</h2>
+        <p class="body inview">The test that matters: the ring on the hand has to be the ring in the packshot. Metal, stone shape and setting must match exactly.</p>
+        <div class="pairs inview">
+          <figure><img src="img/b88e77d269987b87acc940319249f08a.jpg" alt="Oval solitaire in white gold held between two fingers"><img src="img/o2.jpg" alt="Oval solitaire in white gold, packshot"><span class="mono">Oval solitaire, white gold</span></figure>
+          <figure><img src="img/brill1.jpg" alt="Brilliant-cut solitaire in yellow gold on a hand"><img src="img/b1.jpg" alt="Brilliant-cut solitaire in yellow gold, packshot"><span class="mono">Brilliant solitaire, yellow gold</span></figure>
+          <figure><img src="img/stone2.jpg" alt="Three-stone ring in yellow gold on a hand"><img src="img/s3s1.jpg" alt="Three-stone ring in yellow gold on petrol velvet, packshot"><span class="mono">Three-stone, yellow gold</span></figure>
+        </div>
+        <span class="mono inview">Top: on the hand · Bottom: packshot</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 REGULATION -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">11 · Regulation</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Since August 2026, no longer carefree</h2>
+        <p class="body inview">Article 50 of the EU AI Act now applies: realistic AI images of people or products that could pass as real must be visibly labelled when first shown. So the workflow gained one more step, labelling.</p>
+        <div class="grid3 inview">
+          <div><h3 class="h4">Who is responsible</h3><p class="small">The brand and the agency. Metadata alone is not enough, and a platform label doesn't shift responsibility.</p></div>
+          <div><h3 class="h4">Low risk</h3><p class="small">Background, light and layout.</p></div>
+          <div><h3 class="h4">High risk</h3><p class="small">Changing how the ring looks, and realistic synthetic models.</p></div>
+        </div>
+        <div class="trio inview">
+          <figure><div class="ph"><img src="img/oval2.jpg" alt="Example with an AI-generated label"><span class="badge">AI-generated</span></div><h3 class="h4">Fully generated</h3><p class="small">A short, visible label in the corner.</p></figure>
+          <figure><div class="ph"><img src="img/materials4.jpg" alt="Example with an AI-generated scene label: a gold ring on a wooden slice"><span class="badge">AI-generated scene</span></div><h3 class="h4">AI scene, real ring</h3><p class="small">Only the scene is generated; the ring comes from the render.</p></figure>
+          <figure><div class="ph"><img src="img/compare6.jpg" alt="Example with an AI-modified label: pear-cut solitaire sizes on one finger"><span class="badge">AI-modified</span></div><h3 class="h4">AI-edited photo</h3><p class="small">AI adds sizes, never changes the ring.</p></figure>
+        </div>
+        <p class="tag inview">Sources: AI Act, Art. 50 · European Commission Code of Practice on marking and labelling AI content, 10 June 2026 · label examples are illustrative</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 RESULT -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">12 · Result</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Speed and quality, without choosing</h2>
+        <p class="body inview">By combining branding, design systems, and AI-assisted workflows, Auronia gained a scalable way to create and organize visual content around thousands of customizable products. What used to need a shoot per variation is now produced systematically, down to whole seasonal campaigns.</p>
+        <figure class="fig inview"><img src="img/board_beach.jpg" alt="Summer beach campaign: a grid of ring images on sand, shells and hands" style="aspect-ratio: auto"><figcaption class="mono">Summer campaign</figcaption></figure>
+        <p class="quote inview">Most importantly, the project showed how AI can be integrated into a real design process: not as a shortcut, but as a tool for experimentation, storytelling, and scalable content production.</p>
+        <p class="body inview">The same system now carries the brand into a new market: the updated US website.</p>
+        <figure class="fig inview">
+          <div class="browser">
+            <div class="bbar" aria-hidden="true"><i></i><i></i><i></i><span>auronia.com · United States</span></div>
+            <img src="img/s42.jpg" alt="Hero of the updated Auronia US homepage: designed by you, crafted to tell your story" style="display: block; width: 100%; height: auto">
+          </div>
+          <figcaption class="mono">US website update</figcaption>
+        </figure>
+        <div><a class="ul proc" href="https://claude.ai/artifact/2zvpAianNFiUmoppXNTJ3u"><span class="pdot" aria-hidden="true"></span>Open the prototype</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <section class="wrap" style="padding-top: 160px; padding-bottom: 140px">
+    <div class="split">
+      <span class="mono">Next</span>
+      <div class="stack inview" style="gap: 20px; border-top: 1px solid rgba(237,233,227,0.12); padding-top: 40px">
+        <span class="tag">MyZiegler · 2025–now</span>
+        <a href="myziegler.html" class="serif" style="font-size: clamp(36px, 4vw, 56px); line-height: 1.05; text-decoration: none">Bringing order to operational complexity</a>
+        <div style="display: flex; flex-wrap: wrap; gap: 32px">
+          <a class="ul proc" href="myziegler.html"><span class="pdot" aria-hidden="true"></span>See the process</a>
+          <a class="ul" href="index.html">Back to all work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact" style="border-top: 1px solid rgba(237,233,227,0.12)">
+    <div class="wrap" style="padding-top: 140px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 120px">
+      <div class="split">
+        <span class="mono">Contact</span>
+        <div class="inview" style="display: flex; flex-direction: column; gap: 36px; align-items: flex-start">
+          <h2 class="serif" style="margin: 0; font-size: clamp(56px, 9vw, 140px); line-height: 0.95">Say <em style="color: var(--accent)">hello</em></h2>
+          <p style="margin: 0; font-size: 17px; color: #A39E96; font-weight: 300">Open to new projects and collaborations.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 32px">
+            <button type="button" class="ul" data-copy="srokapau@gmail.com" aria-label="Copy email address srokapau@gmail.com">srokapau@gmail.com <span class="ic-ok" hidden><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="var(--accent)" stroke-width="1.4" role="img" aria-label="Copied"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span class="ic-copy"><svg class="copy" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5A1.5 1.5 0 0 0 9 1.5H3A1.5 1.5 0 0 0 1.5 3v6A1.5 1.5 0 0 0 3 10.5h.5"/></svg></span></button>
+            <a class="ul" href="https://www.linkedin.com/in/paulina-sroka-7b809313b/">LinkedIn</a>
+            <a class="ul" href="https://drive.google.com/file/d/1X7QwHuxu70UPgbVz6cSF4JS56aZ_WabV/view?usp=sharing">Résumé</a>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; color: #8E8981">
+        <span>© 2026 Paulina Sroka</span>
+        <span>Product Designer</span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){try{navigator.clipboard.writeText(b.dataset.copy)}catch(e){}var ok=b.querySelector('.ic-ok'),cp=b.querySelector('.ic-copy');if(ok){ok.hidden=false;cp.hidden=true;clearTimeout(b._t);b._t=setTimeout(function(){ok.hidden=true;cp.hidden=false},1800)}})});
+</script>
+<script>
+(function(){var t=document.querySelector('.car-track'),tabs=[].slice.call(document.querySelectorAll('.car-tab'));if(!t)return;var i=0,hold=false;function go(n){i=n;t.style.transform='translateX(-'+(n*100)+'%)';tabs.forEach(function(b,k){b.setAttribute('aria-pressed',k===n?'true':'false')})}
+tabs.forEach(function(b,k){b.addEventListener('click',function(){hold=true;go(k)})});go(0);
+if(!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))setInterval(function(){if(!hold)go((i+1)%3)},4500)})();
+</script>
+</body>
+</html>

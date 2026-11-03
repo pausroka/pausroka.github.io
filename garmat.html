@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garmat USA, case study · Paulina Sroka</title>
+<meta name="description" content="Making manufacturing configurable: a self-service configurator for industrial spray booths.">
+<meta property="og:title" content="Garmat USA, case study · Paulina Sroka">
+<meta property="og:description" content="Making manufacturing configurable: a self-service configurator for industrial spray booths.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0A09'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23EDE9E3' text-anchor='middle'%3EPS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@300;400;500&amp;family=Geist+Mono:wght@400&amp;display=swap">
+<style>
+body{margin:0;background:#0B0A09}
+a{color:#EDE9E3}a:hover{color:#FFFFFF}
+.pg{overflow-x:clip;font-family:'Geist',system-ui,sans-serif;color:#EDE9E3;background:#0B0A09;-webkit-font-smoothing:antialiased}
+.pg *{box-sizing:border-box}
+.serif{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-0.01em}
+.mono{font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#8E8981}
+.wrap{width:100%;max-width:1360px;margin:0 auto;padding:0 40px}
+.split{position:relative}
+.split>:first-child{position:static;display:block;width:100%;max-width:840px;margin:0 auto 14px}
+.split>:first-child:empty{display:none}
+.split>:last-child{width:100%;max-width:840px;margin:0 auto}
+@media (max-width:1240px){
+  .split>:first-child{position:static;display:block;margin-bottom:24px}
+}
+
+/* Gentle text motion */
+.line{display:block;overflow:hidden;padding-bottom:0.08em}
+.line>span{display:inline-block;animation:rise 1.3s cubic-bezier(.16,.84,.24,1) both}
+.fade{animation:fade 1.4s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.3s}.d3{animation-delay:.55s}.d4{animation-delay:.9s}
+@keyframes rise{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){
+  .inview{animation:fade linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+}
+
+.nav a,.ul{text-decoration:none;font:inherit;font-size:14px;color:#CFCAC2;position:relative;padding:12px 0;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.ul{font-size:15px;color:#EDE9E3}
+.nav a,.ul{transition:color .4s ease}
+.nav a:hover,.ul:hover{color:var(--accent)}
+.ul svg.copy{transition:color .4s ease}
+
+.dot,.pdot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.ul.proc:hover .pdot{animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,90,31,.55)}70%{box-shadow:0 0 0 10px rgba(255,90,31,0)}100%{box-shadow:0 0 0 0 rgba(255,90,31,0)}}
+
+/* Glow, same as the homepage */
+.beams{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.pg>section,.pg>footer,.pg>header{position:relative;z-index:1}
+.drift{position:absolute;inset:0}
+.orb{position:absolute;border-radius:50%;mix-blend-mode:plus-lighter;pointer-events:none}
+.orb.a{top:-30vmax;right:-22vmax;width:68vmax;height:68vmax;background:radial-gradient(circle at 42% 58%,rgba(218,91,40,0.55) 0%,rgba(170,19,31,0.42) 32%,rgba(170,19,31,0.12) 55%,rgba(170,19,31,0) 70%);filter:blur(40px);opacity:.45;animation:breathe 26s ease-in-out infinite alternate}
+.orb.b{top:-8vmax;right:6vmax;width:26vmax;height:26vmax;background:radial-gradient(circle,rgba(255,150,90,0.35) 0%,rgba(218,91,40,0.12) 45%,rgba(218,91,40,0) 70%);filter:blur(30px);opacity:.35;animation:breathe 19s ease-in-out infinite alternate-reverse}
+@keyframes breathe{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-2vw,2vh) scale(1.06)}}
+@supports (animation-timeline: scroll()){
+  .drift{animation:follow linear both;animation-timeline:scroll(root)}
+}
+@keyframes follow{0%{transform:translate(0,0);opacity:1}35%{transform:translate(-4vw,14vh);opacity:.75}100%{transform:translate(-10vw,34vh);opacity:.45}}
+.specks i{position:absolute;border-radius:50%;background:#F4D3BE;opacity:0;animation:twinkle 5.5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.05}50%{opacity:.55}}
+
+/* Case study */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.facts>div{padding:18px 24px 18px 0;border-top:1px solid rgba(237,233,227,0.12);display:flex;flex-direction:column;gap:6px}
+.chapter{padding-top:96px}
+.stack{display:flex;flex-direction:column;gap:20px}
+.h2{margin:0 0 4px;font-size:clamp(32px,3.4vw,44px);line-height:1.08;letter-spacing:-0.01em}
+.body{margin:0;font-size:18px;line-height:1.7;color:#E6E1DA;font-weight:400}
+.quote{margin:12px 0;padding:0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(24px,2.4vw,30px);line-height:1.3;color:#FFFFFF}
+.fig{margin:16px 0 12px;display:flex;flex-direction:column;gap:10px}
+.fig img{display:block;width:100%;height:auto;border-radius:6px;background:#161412}
+.tag{font-size:13px;color:#8E8981}
+
+.browser{border:1px solid rgba(237,233,227,0.16);border-radius:8px;overflow:hidden;background:#161412}
+.bbar{height:34px;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid rgba(237,233,227,0.12)}
+.bbar i{width:8px;height:8px;border-radius:50%;background:rgba(237,233,227,0.25)}
+.bbar span{margin-left:12px;font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.06em;color:#8E8981}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:8px 0}
+.grid4>div,.grid3>div{padding:18px 20px 18px 0;border-top:1px solid rgba(237,233,227,0.12);display:flex;flex-direction:column;gap:8px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:8px 0}
+.h4{margin:0;font-family:'Instrument Serif',Georgia,serif;font-size:24px;line-height:1.15;font-weight:400}
+.small{margin:0;font-size:15px;line-height:1.6;color:#A39E96;font-weight:400}
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:relative;margin:16px 0 8px}
+.flow::before{content:'';position:absolute;left:0;right:0;top:4px;height:1px;background:rgba(237,233,227,0.2)}
+.step{position:relative;padding:28px 16px 0 0;display:flex;flex-direction:column;gap:6px}
+.step::before{content:'';position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50%;background:#0B0A09;border:1px solid #EDE9E3}
+.step.out::before{background:var(--accent);border-color:var(--accent)}
+.list{list-style:none;margin:0;padding:0}
+.list li{padding:14px 0;border-top:1px solid rgba(237,233,227,0.12);font-size:18px;line-height:1.5;font-weight:400;color:#E6E1DA}
+.list li span{color:#8E8981;margin-left:8px}
+.list li:last-child{border-bottom:1px solid rgba(237,233,227,0.12)}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:8px 0}
+.trio figure{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.trio .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:6px;background:#161412}
+.trio .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reject .ph::after{content:'';position:absolute;inset:0;border:1.5px solid var(--accent);border-radius:6px;pointer-events:none}
+.badge{position:absolute;left:10px;top:10px;font-family:'Geist Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;padding:5px 8px;border-radius:3px;background:rgba(11,10,9,0.72);color:#EDE9E3}
+.reject .badge{background:var(--accent);color:#0B0A09}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:4px;max-width:600px}
+.pair figure{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pair img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;background:#161412}
+.pairs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}
+.pairs figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pairs img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;background:#161412}
+.pairs .mono{margin-top:4px}
+.car{overflow:hidden;border-radius:6px;background:#161412}
+.car-track{display:flex;transition:transform 1s cubic-bezier(.65,0,.35,1)}
+.car-track img{flex:0 0 100%;width:100%;aspect-ratio:1600/848;object-fit:cover;display:block}
+.car-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.car-tab{background:none;border:0;padding:8px 0;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:10px;color:#8E8981;font-family:'Geist Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;transition:color .4s ease}
+.car-tab i{display:block;height:1px;background:rgba(237,233,227,0.2);transition:background .4s ease}
+.car-tab[aria-pressed="true"]{color:#EDE9E3}
+.car-tab[aria-pressed="true"] i{background:var(--accent);height:2px}
+.car-tab:hover{color:#EDE9E3}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips span{display:inline-flex;align-items:center;height:40px;padding:0 18px;border:1px solid rgba(237,233,227,0.2);border-radius:999px;font-size:15px;color:#E6E1DA}
+.process{margin:16px 0 0;padding:20px 20px 24px;border:1px solid rgba(237,233,227,0.14);border-radius:10px;background:rgba(255,255,255,0.02)}
+.process-head{display:flex;justify-content:space-between;gap:16px;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid rgba(237,233,227,0.1)}
+.pipe{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.pipe li{position:relative;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pipe li:not(:last-child)::after{content:'→';position:absolute;top:0;margin-top:62.5%;right:-21px;transform:translateY(-50%);font-size:14px;line-height:1;color:var(--accent)}
+.pipe .pv{position:relative;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:#161412;margin-bottom:8px}
+.pipe .pv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pipe .zoom img{transform:scale(2.4);transform-origin:50% 52%}
+.pipe .prompt{display:flex;align-items:center;padding:14px;border:1px solid rgba(237,233,227,0.14);background:#12100E}
+.pipe .prompt code{font-family:'Geist Mono',ui-monospace,monospace;font-size:11px;line-height:1.35;color:#CFCAC2;display:flex;flex-direction:column;gap:9px;width:100%}
+.pipe .prompt code span{display:flex;flex-direction:column;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pipe .prompt b{font-weight:400;color:var(--accent);font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase}
+.pipe li.out .pv{box-shadow:0 0 0 1px var(--accent)}
+.pipe .h4{font-size:22px}
+@media (max-width:900px){.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}.pipe li::after{display:none}}
+.duo2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.duo2 .fig{margin:0}
+.pipe .stackp{overflow:visible;background:none}
+.pipe .stackp img{border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.45)}
+.pipe .stackp img:nth-child(1){transform:translate(-12%,2%) rotate(-8deg) scale(.8)}
+.pipe .stackp img:nth-child(2){transform:translate(12%,1%) rotate(7deg) scale(.8)}
+.pipe .stackp img:nth-child(3){transform:scale(.84);outline:1px solid var(--accent);outline-offset:-1px}
+.pipe li.out .pv.stackp{box-shadow:none}
+.series{display:flex;flex-direction:column;gap:16px;margin-top:8px}
+.steps4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.steps4 li{padding-top:4px}
+.steps4 li:not(:last-child)::after{margin-top:6px;transform:none}
+.dodbar{display:flex;gap:3px;height:10px;border-radius:5px;overflow:hidden}
+.dodbar span:nth-child(1){background:#6FB59A}.dodbar span:nth-child(2){background:#D9A441}.dodbar span:nth-child(3){background:var(--accent)}
+.dodleg{display:flex;flex-wrap:wrap;gap:24px;font-size:15px;color:#CFCAC2}
+.dodleg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px}
+.work{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px;align-items:start;margin-top:16px;padding:20px;border:1px solid rgba(237,233,227,0.14);border-radius:10px;background:rgba(255,255,255,0.02)}
+.work-shot img{display:block;width:100%;height:auto;border-radius:6px}
+.work-text{display:flex;flex-direction:column;gap:22px}
+.work-text>div{display:flex;flex-direction:column;gap:8px}
+.work-text .body{font-size:16px}
+.work-idx{grid-template-columns:minmax(0,0.85fr) minmax(0,1fr);align-items:center}
+.work-idx .work-text{gap:26px;padding:8px 4px}
+.work-idx .work-lead{margin:0;font-size:clamp(22px,2vw,26px);line-height:1.25;font-weight:400}
+.work-idx .work-shot img{border-radius:16px;clip-path:inset(1px round 16px)}
+.handoff{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.handoff>div,.handoff>a{display:flex;flex-direction:column;gap:8px;padding:18px;border:1px solid rgba(237,233,227,0.14);border-radius:10px;text-decoration:none;color:#EDE9E3;transition:border-color .4s ease}
+.handoff>a:hover{border-color:var(--accent)}
+.handoff .go{margin-top:auto;padding-top:10px;font-size:14px;color:var(--accent)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:8px}
+.grid2>div{display:flex;flex-direction:column;gap:10px}
+.grid2 .list li{font-size:16px}
+@media (max-width:900px){.work,.handoff,.grid2{grid-template-columns:minmax(0,1fr)}}
+.shot{display:flex;flex-direction:column;gap:14px;padding-top:28px;margin-top:20px;border-top:1px solid rgba(237,233,227,0.14)}
+.shot-head{display:flex;flex-direction:column;gap:6px}
+.shot-head .mono{color:var(--accent)}
+.shot-title{margin:0;font-size:clamp(24px,2.4vw,30px);line-height:1.15;font-weight:400}
+.shot .fig{margin:6px 0 0}
+.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:8px}
+.compare>div{display:flex;flex-direction:column;gap:10px;padding:20px;border:1px solid rgba(237,233,227,0.14);border-radius:10px}
+.compare .after{border-color:var(--accent);background:rgba(255,90,31,0.04)}
+.compare .after .mono{color:var(--accent)}
+.compare .list li{font-size:16px}
+@media (max-width:900px){.compare{grid-template-columns:minmax(0,1fr)}}
+.ads{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}
+.series-cap{margin-top:-4px}
+.ads img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;background:#161412}
+.promise{margin:8px 0;font-family:'Instrument Serif',Georgia,serif;font-size:clamp(30px,3.2vw,44px);line-height:1.12}
+.promise em{color:var(--accent)}
+@media (max-width:900px){
+  .grid4,.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .flow{grid-template-columns:minmax(0,1fr);gap:4px}
+  .flow::before{display:none}
+  .ads{gap:6px}
+}
+@media (max-width:900px){
+  .wrap{padding:0 16px}
+  .facts{grid-template-columns:minmax(0,1fr)}
+  .chapter{padding-top:88px}
+  .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .dot,.pdot,.line>span,.fade,.inview,.orb,.drift,.specks i{animation:none}
+  .specks i{opacity:.3}
+}
+</style>
+<style>.ic-ok,.ic-copy{display:inline-flex}[hidden]{display:none!important}html,body{margin:0;background:#0B0A09}</style>
+</head>
+<body>
+<div class="pg" style="--accent: #FF5A1F; width: 100%; min-height: 100vh">
+  <div class="beams fade" aria-hidden="true">
+    <div class="drift">
+      <div class="orb a"></div>
+      <div class="orb b"></div>
+      <div class="specks"><i style="left: 68%; top: 22%; width: 1px; height: 1px; animation-delay: 2.4s"></i><i style="left: 80%; top: 30%; width: 1px; height: 1px; animation-delay: 0.2s"></i><i style="left: 74%; top: 11%; width: 2px; height: 2px; animation-delay: 1.4s"></i><i style="left: 62%; top: 10%; width: 1px; height: 1px; animation-delay: 3.5s"></i><i style="left: 84%; top: 42%; width: 2px; height: 2px; animation-delay: 3.4s"></i><i style="left: 59%; top: 16%; width: 2px; height: 2px; animation-delay: 3.5s"></i><i style="left: 91%; top: 57%; width: 1px; height: 1px; animation-delay: 4.7s"></i><i style="left: 98%; top: 26%; width: 1px; height: 1px; animation-delay: 4.2s"></i><i style="left: 53%; top: 41%; width: 1px; height: 1px; animation-delay: 3.2s"></i><i style="left: 86%; top: 66%; width: 1px; height: 1px; animation-delay: 3.5s"></i></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="wrap fade" style="display: flex; justify-content: space-between; align-items: center; padding-top: 28px; padding-bottom: 28px">
+    <a href="index.html" class="serif" aria-label="Paulina Sroka, home" style="font-size: 26px; text-decoration: none; color: #EDE9E3">PS</a>
+    <nav class="nav" aria-label="Main" style="display: flex; gap: 32px; align-items: center">
+      <a href="index.html">Work</a>
+      <a href="index.html">About</a>
+      <a href="https://drive.google.com/file/d/1X7QwHuxu70UPgbVz6cSF4JS56aZ_WabV/view?usp=sharing">Résumé</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- INTRO -->
+  <section class="wrap" style="padding-top: 120px">
+    <div class="split">
+      <span class="mono fade d1">Case study</span>
+      <div class="stack" style="gap: 40px">
+        <div class="stack" style="gap: 18px">
+          <span class="tag fade d1">Garmat USA · 2024</span>
+          <h1 class="serif" style="margin: 0; font-size: clamp(44px, 5.4vw, 72px); line-height: 1">
+            <span class="line"><span class="d2">Making manufacturing</span></span>
+            <span class="line"><span class="d3">configurable</span></span>
+          </h1>
+          <p class="fade d3" style="margin: 8px 0 0; font-size: 20px; line-height: 1.6; color: #E6E1DA; max-width: 760px">Turning a phone-and-spreadsheet sales process for industrial spray booths into a guided, self-service configurator with real-time pricing.</p>
+        </div>
+        <div class="facts fade d4">
+          <div><span class="mono">Industry</span><span style="font-size: 15px">Industrial manufacturing · B2B</span></div>
+          <div><span class="mono">Users</span><span style="font-size: 15px">Distributors</span></div>
+          <div><span class="mono">Focus</span><span style="font-size: 15px">Configurator · quoting · design system</span></div>
+        </div>
+        <figure class="fig fade d4"><img src="img/ee0e71df4ec2e9a98d55d2bacb4fe66c.jpg" alt="Garmat spray booth configurator next to a photo of a booth being installed"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 CHALLENGE -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">01 · Challenge</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Thousands of combinations, ordered by phone</h2>
+        <p class="body inview">Garmat USA manufactures industrial spray booths: highly specialized equipment with thousands of possible configuration combinations.</p>
+        <p class="body inview">Before the project, ordering relied almost entirely on phone calls, emails and spreadsheets. Distributors contacted the sales team, specifications were reviewed manually, and quotes could take several days to prepare. Compatibility rules, pricing logic and manufacturing requirements lived in people's heads, which created delays and increased the risk of error.</p>
+        <p class="quote inview">The challenge was not simply building a configurator. It was translating a complex sales and manufacturing process into an intuitive digital experience.</p>
+        <div class="compare inview">
+          <div><span class="mono">Before</span><ul class="list"><li>Phone calls, emails and spreadsheets</li><li>Specifications checked by hand</li><li>Quotes in several days</li><li>Depends on expert knowledge</li></ul></div>
+          <div class="after"><span class="mono">After</span><ul class="list"><li>Self-service, one decision at a time</li><li>Only valid options are shown</li><li>Price updates as you build</li><li>Complete specification in one session</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ROLE -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">02 · Role</span>
+      <div class="stack inview">
+        <h2 class="serif h2">From expert knowledge to a guided journey</h2>
+        <p class="body">I led UX/UI design, built the design system and owned the end-to-end configuration experience. The project meant defining workflows that didn't exist before, and turning expert knowledge into a journey any distributor can follow.</p>
+        <div class="grid3">
+          <div><span class="mono">01</span><h3 class="h4">UX/UI design</h3><p class="small">The configurator, product pages and account flows.</p></div>
+          <div><span class="mono">02</span><h3 class="h4">Design system</h3><p class="small">Tokens, components and page templates for the portal.</p></div>
+          <div><span class="mono">03</span><h3 class="h4">End-to-end flow</h3><p class="small">From first choice to a complete, priced specification.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 CONFIGURATION -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">03 · Configuration</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">One decision at a time</h2>
+        <p class="body inview">The first step was understanding how products were configured internally, and which decisions distributors actually needed to make. Instead of presenting every option at once, I designed a structured flow that guides users through configuration step by step.</p>
+        <div class="process inview">
+          <div class="process-head"><span class="mono">The configuration flow</span><span class="mono">Choice → priced specification</span></div>
+          <ol class="pipe steps4" style="grid-template-columns: repeat(5, minmax(0,1fr))">
+            <li><span class="mono">01</span><h3 class="h4">Booth model</h3><p class="small">Pick the base model.</p></li>
+            <li><span class="mono">02</span><h3 class="h4">Cabin</h3><p class="small">Length and height, with custom options.</p></li>
+            <li><span class="mono">03</span><h3 class="h4">Upgrades</h3><p class="small">Roof, drive-thru and more.</p></li>
+            <li><span class="mono">04</span><h3 class="h4">Equipment</h3><p class="small">Lighting and mechanical options.</p></li>
+            <li><span class="mono">05</span><h3 class="h4">Summary</h3><p class="small">Full specification and price, ready to send.</p></li>
+          </ol>
+        </div>
+        <p class="quote inview">Users only see options relevant to their previous selections. What was a highly technical product became a predictable, guided experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 COMPLEXITY -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">04 · Complexity</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Making product logic invisible</h2>
+        <p class="body inview">Behind the scenes, every booth carries dependencies, restrictions and technical requirements. Rather than exposing these rules, the interface quietly steers users toward valid configurations.</p>
+        <p class="body inview">The result is a system distributors can use confidently, without needing expert knowledge of manufacturing constraints.</p>
+
+        <div class="shot inview">
+          <div class="shot-head"><span class="mono">Screen 01</span><h3 class="serif shot-title">The configurator</h3></div>
+          <p class="body">Two columns with clear roles. On the right, the distributor works through grouped decisions: booth model, cabin, upgrades, mechanicals and equipment. On the left, a summary lists every part already selected, with its code and quantity, next to a picture of the booth. A check mark confirms each completed step, and the bar at the bottom keeps the next action in reach: add to request or proceed.</p>
+          <figure class="fig"><img src="img/52b4334530942e3a46ebb58954d2b9d1.jpg" alt="Garmat configurator with booth model, cabin length and cabin height selection next to the summary"></figure>
+        </div>
+
+        <div class="shot inview">
+          <div class="shot-head"><span class="mono">Screen 02</span><h3 class="serif shot-title">Warnings that explain, not block</h3></div>
+          <p class="body">Some choices are allowed but have consequences, like raising the cabin height. The option gets a yellow outline and a short message explaining what changes. In the summary, the same item is highlighted and marked with a coloured dot, and every group shows how many of its items are complete, so nothing important slips through before the request is sent.</p>
+          <figure class="fig"><img src="img/5ebb12f5026ff307b9e9d4ba362f6e97.jpg" alt="Configurator warning state with a yellow message on cabin height upgrade and highlighted items in the summary"></figure>
+        </div>
+
+        <div class="shot inview">
+          <div class="shot-head"><span class="mono">Screen 03</span><h3 class="serif shot-title">Errors that stop invalid booths</h3></div>
+          <p class="body">When two choices can't work together, the conflicting options are outlined in red with an explanation, and the incompatible alternatives are disabled. Add to request and Proceed stay inactive until the conflict is solved, so an invalid configuration never reaches production. A Show only alerts switch filters the long list down to what needs attention.</p>
+          <figure class="fig"><img src="img/df1bc1fbfd91798429287025dc360e93.jpg" alt="Configurator error state with red messages on drive-thru upgrade and burner size, and disabled request buttons"></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 SYSTEM -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">05 · System</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">A design system built to grow</h2>
+        <p class="body inview">Alongside the configurator, I built a reusable UI system in cooperation with the US team, so every Garmat product stays consistent across different platforms and needs. It covers tokens for color, typography, sizes and shadows, components and page templates. New configuration steps, products and workflows can be added later without breaking the experience or rebuilding from scratch.</p>
+        <figure class="fig inview"><img src="img/489432afadf537b72d6de20ef3529225.jpg" alt="Garmat Distributors Portal design system in Figma showing semantic color tokens"><figcaption class="mono">Semantic color tokens in the distributors portal design system</figcaption></figure>
+        <div class="work work-idx inview">
+          <figure class="work-shot"><img src="img/0186b458f125b660fa1ed6d85a9449f0.jpg" alt="Index sheet of the Garmat Distributors Portal Figma file listing pages from log in to shopping list"></figure>
+          <div class="work-text">
+            <h3 class="serif work-lead">A file the whole team can work in</h3>
+            <div><span class="mono">File organisation</span><p class="body">The file opens with an index sheet. Every page follows the portal itself, from log in and the product catalog to requests, orders and checkout, so anyone on the team can find a flow in seconds.</p></div>
+            <div><span class="mono">One shared library</span><p class="body">The design system lives in its own file, split into tokens, templates and patterns, media and components. The portal uses it as a library, so a change made once reaches every screen.</p></div>
+            <div><span class="mono">Short update sessions</span><p class="body">Regular short sessions with the team to walk through changes, agree on updates and keep everyone working from the same version.</p></div>
+            <div><span class="mono">Constant cooperation</span><p class="body">Close, ongoing work with the PM and especially with frontend, so components in Figma and in code stay in step.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 FEEDBACK -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">06 · Feedback</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">Pricing as part of the configuration</h2>
+        <p class="quote inview">No more waiting days for a quote that should take seconds.</p>
+        <p class="body inview">Pricing became part of the configuration itself, not a separate step handled later by sales. Users get immediate feedback as they build their product, so they understand the impact of each decision without waiting on manual calculations or follow-up emails. That shift increased transparency and removed much of the uncertainty buyers used to feel.</p>
+        <figure class="fig inview"><img src="img/7a38027b190a6af0c8bfbd377b97de1c.jpg" alt="Overview of configurator, product page, account and notification screens on desktop, tablet and mobile"><figcaption class="mono">Configurator, product page and account flows on desktop, tablet and mobile</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 RESULT -->
+  <section class="wrap chapter">
+    <div class="split">
+      <span class="mono">07 · Result</span>
+      <div class="stack">
+        <h2 class="serif h2 inview">From days of back-and-forth to one session</h2>
+        <p class="body inview">The final product replaced a fragmented, manual workflow with a structured self-service experience. Distributors can now configure products independently, get immediate feedback and submit complete specifications without the lengthy back-and-forth that used to define the process.</p>
+        <p class="quote inview">What was once a knowledge-dependent workflow became a scalable digital system: less friction, better accuracy, and a better experience for customers and internal teams alike.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <section class="wrap" style="padding-top: 160px; padding-bottom: 140px">
+    <div class="split">
+      <span class="mono">Next</span>
+      <div class="stack inview" style="gap: 20px; border-top: 1px solid rgba(237,233,227,0.12); padding-top: 40px">
+        <span class="tag">Auronia · 2019–now</span>
+        <a href="auronia.html" class="serif" style="font-size: clamp(36px, 4vw, 56px); line-height: 1.05; text-decoration: none">When product photography stopped scaling</a>
+        <div style="display: flex; flex-wrap: wrap; gap: 32px">
+          <a class="ul proc" href="auronia.html"><span class="pdot" aria-hidden="true"></span>See the process</a>
+          <a class="ul" href="index.html">Back to all work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact" style="border-top: 1px solid rgba(237,233,227,0.12)">
+    <div class="wrap" style="padding-top: 140px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 120px">
+      <div class="split">
+        <span class="mono">Contact</span>
+        <div class="inview" style="display: flex; flex-direction: column; gap: 36px; align-items: flex-start">
+          <h2 class="serif" style="margin: 0; font-size: clamp(56px, 9vw, 140px); line-height: 0.95">Say <em style="color: var(--accent)">hello</em></h2>
+          <p style="margin: 0; font-size: 17px; color: #A39E96; font-weight: 300">Open to new projects and collaborations.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 32px">
+            <button type="button" class="ul" data-copy="srokapau@gmail.com" aria-label="Copy email address srokapau@gmail.com">srokapau@gmail.com <span class="ic-ok" hidden><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="var(--accent)" stroke-width="1.4" role="img" aria-label="Copied"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span class="ic-copy"><svg class="copy" width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5"/><path d="M10.5 3.5v-.5A1.5 1.5 0 0 0 9 1.5H3A1.5 1.5 0 0 0 1.5 3v6A1.5 1.5 0 0 0 3 10.5h.5"/></svg></span></button>
+            <a class="ul" href="https://www.linkedin.com/in/paulina-sroka-7b809313b/">LinkedIn</a>
+            <a class="ul" href="https://drive.google.com/file/d/1X7QwHuxu70UPgbVz6cSF4JS56aZ_WabV/view?usp=sharing">Résumé</a>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; color: #8E8981">
+        <span>© 2026 Paulina Sroka</span>
+        <span>Product Designer</span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){try{navigator.clipboard.writeText(b.dataset.copy)}catch(e){}var ok=b.querySelector('.ic-ok'),cp=b.querySelector('.ic-copy');if(ok){ok.hidden=false;cp.hidden=true;clearTimeout(b._t);b._t=setTimeout(function(){ok.hidden=true;cp.hidden=false},1800)}})});
+</script>
+</body>
+</html>
